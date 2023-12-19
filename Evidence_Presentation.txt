@@ -1,0 +1,58 @@
+// Evidence_Presentation.txt
+
+const fs = require('fs');
+const path = require('path');
+
+const plaintiffName = "Michael Gruen";
+const defendantNames = ["CROSSCHECK STUDIOS, LLC", "JOSHUA RICHARDS", "CHRIS SAWTELLE", "JEREMIAH REYNOLDS, ESQ.", "ESTEBAN DIMASI"];
+const evidenceList = [
+  {
+    description: "Emails showing the cessation of communication with Michael Gruen",
+    exhibitNumber: "Exhibit A"
+  },
+  {
+    description: "Records of the formation of Crosscheck Studios and amendments to the operating agreement",
+    exhibitNumber: "Exhibit B"
+  },
+  {
+    description: "Text messages between Michael Gruen and Joshua Richards discussing the Amazon deal",
+    exhibitNumber: "Exhibit C"
+  },
+  {
+    description: "Variety article contradicting Jeremiah Reynolds' assertions about the Amazon deal",
+    exhibitNumber: "Exhibit D"
+  },
+  {
+    description: "Correspondence regarding the settlement agreement and subsequent disputes",
+    exhibitNumber: "Exhibit E"
+  },
+  {
+    description: "Medical records documenting Michael Gruen's health issues",
+    exhibitNumber: "Exhibit F"
+  },
+  {
+    description: "Bar complaint filed against Jeremiah Reynolds, Esq.",
+    exhibitNumber: "Exhibit G"
+  }
+];
+
+function generateEvidencePresentation(evidenceList) {
+  let evidencePresentationContent = "### EVIDENCE PRESENTATION\n\n";
+  evidenceList.forEach(evidence => {
+    evidencePresentationContent += `**${evidence.exhibitNumber}**: ${evidence.description}\n\n`;
+  });
+  return evidencePresentationContent;
+}
+
+function saveToFile(fileName, content) {
+  fs.writeFile(path.join(__dirname, fileName), content, (err) => {
+    if (err) {
+      console.error(`Failed to save ${fileName}: ${err}`);
+    } else {
+      console.log(`${fileName} has been saved.`);
+    }
+  });
+}
+
+const evidencePresentationContent = generateEvidencePresentation(evidenceList);
+saveToFile("Evidence_Presentation.txt", evidencePresentationContent);

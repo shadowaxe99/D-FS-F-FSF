@@ -1,0 +1,37 @@
+plaintiffName = "Michael Gruen"
+defendantName = "Crosscheck Studios, LLC; Joshua Richards; Chris Sawtelle; Jeremiah Reynolds, Esq.; Esteban Di Masi"
+courtName = "Superior Court of the State of California, County of Los Angeles"
+caseNumber = "[To Be Assigned]"
+documentTitle = "Complaint for Breach of Contract; Breach of Fiduciary Duty; Fraudulent Inducement; Defamation; Intentional Interference with Prospective Economic Advantage; Unfair Competition; Constructive Trust; Misappropriation of Trade Secrets; Invasion of Privacy; Negligent Infliction of Emotional Distress; Intentional Infliction of Emotional Distress; Civil Conspiracy; Violation of California Labor Code; Retaliatory Termination; Conversion"
+
+tableOfContents = {
+    "Title Page": "1",
+    "Table of Contents": "2",
+    "Introduction": "3",
+    "Statement of Facts": "4",
+    "Legal Arguments": "5",
+    "Claims and Causes of Action": "6",
+    "Evidence Presentation": "7",
+    "Legal Precedent Citation": "8",
+    "Relief Sought": "9",
+    "Conclusion": "10",
+    "Appendices or Exhibits": "11",
+    "Signature": "12",
+    "Certificate of Service": "13"
+}
+
+def generateTableOfContents():
+    toc_text = f"{documentTitle}\n\n"
+    toc_text += f"Plaintiff(s): {plaintiffName}\n"
+    toc_text += f"Defendant(s): {defendantName}\n"
+    toc_text += f"Court: {courtName}\n"
+    toc_text += f"Case Number: {caseNumber}\n\n"
+    toc_text += "Table of Contents\n"
+    for section, page in tableOfContents.items():
+        toc_text += f"{section}: {page}\n"
+    return toc_text
+
+# Write the Table of Contents to a text file
+toc_filename = "Table_of_Contents.txt"
+with open(toc_filename, 'w') as toc_file:
+    toc_file.write(generateTableOfContents())

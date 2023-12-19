@@ -1,0 +1,41 @@
+// Legal_Precedent_Citation.txt Generation Code
+
+const fs = require('fs');
+const path = require('path');
+
+const precedentCasesList = [
+  {
+    caseName: "Lazar v. Superior Court",
+    citation: "12 Cal.4th 631 (1996)",
+    summary: "Establishes the principle that a promise made without the intention of performing it constitutes fraud."
+  },
+  {
+    caseName: "Foley v. Interactive Data Corp.",
+    citation: "47 Cal.3d 654 (1988)",
+    summary: "Clarifies the obligations of good faith and fair dealing in employment contracts."
+  },
+  // Additional cases can be added here
+];
+
+const generateLegalPrecedentCitation = (precedentCases) => {
+  let content = "### Legal Precedent Citation\n\n";
+  precedentCases.forEach((caseInfo, index) => {
+    content += `**${index + 1}. ${caseInfo.caseName} (${caseInfo.citation})**\n`;
+    content += `- Summary: ${caseInfo.summary}\n\n`;
+  });
+  return content;
+};
+
+const saveToFile = (filename, content) => {
+  const filePath = path.join(__dirname, filename);
+  fs.writeFile(filePath, content, (err) => {
+    if (err) {
+      console.error(`Failed to save ${filename}: ${err}`);
+    } else {
+      console.log(`${filename} has been saved.`);
+    }
+  });
+};
+
+const legalPrecedentContent = generateLegalPrecedentCitation(precedentCasesList);
+saveToFile('Legal_Precedent_Citation.txt', legalPrecedentContent);

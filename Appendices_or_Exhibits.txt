@@ -1,0 +1,56 @@
+// Appendices_or_Exhibits.txt Generation Code
+
+const fs = require('fs');
+const path = require('path');
+
+const plaintiffName = "Michael Gruen";
+const defendantNames = ["Crosscheck Studios, LLC", "Joshua Richards", "Chris Sawtelle", "Jeremiah Reynolds, Esq.", "Esteban Di Masi"];
+const exhibitsList = [
+  {
+    exhibitTitle: "Operating Agreement of Crosscheck Studios, LLC",
+    description: "The original agreement outlining the ownership, control, and management structure of Crosscheck Studios, LLC."
+  },
+  {
+    exhibitTitle: "Email Correspondence",
+    description: "A collection of emails evidencing the breakdown in communication between the plaintiff and defendants."
+  },
+  {
+    exhibitTitle: "Medical Records",
+    description: "Documentation of the plaintiff's health issues and their impact on his ability to perform his duties."
+  },
+  {
+    exhibitTitle: "Variety Article on Amazon Deal",
+    description: "An article contradicting the defendants' claims regarding the Amazon deal."
+  },
+  {
+    exhibitTitle: "Text Message Logs",
+    description: "Text messages between the plaintiff and defendants showing personal and professional interactions."
+  },
+  {
+    exhibitTitle: "Legal Threat Correspondence",
+    description: "Communication regarding the dispute over the domain CrosscheckStudios.com."
+  },
+  {
+    exhibitTitle: "Bar Complaint Against Jeremiah Reynolds, Esq.",
+    description: "A complaint filed by the plaintiff alleging unethical conduct by defendant Reynolds."
+  }
+];
+
+function generateAppendicesOrExhibitsFile() {
+  const filePath = path.join(__dirname, 'Appendices_or_Exhibits.txt');
+  let content = `### APPENDICES OR EXHIBITS\n\n`;
+
+  exhibitsList.forEach((exhibit, index) => {
+    content += `Exhibit ${index + 1}: ${exhibit.exhibitTitle}\nDescription: ${exhibit.description}\n\n`;
+  });
+
+  fs.writeFile(filePath, content, (err) => {
+    if (err) {
+      console.error('Error writing Appendices or Exhibits to file:', err);
+    } else {
+      console.log('Appendices or Exhibits successfully written to file.');
+    }
+  });
+}
+
+generateAppendicesOrExhibitsFile();

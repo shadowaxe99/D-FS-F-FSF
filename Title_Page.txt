@@ -1,0 +1,34 @@
+// Title_Page.txt content generation
+
+const fs = require('fs');
+
+const plaintiffName = "MICHAEL GRUEN";
+const defendantNames = "CROSSCHECK STUDIOS, LLC; JOSHUA RICHARDS; CHRIS SAWTELLE; JEREMIAH REYNOLDS, ESQ.; and ESTEBAN DIMASI";
+const courtName = "THE SUPERIOR COURT OF THE STATE OF CALIFORNIA IN AND FOR THE COUNTY OF LOS ANGELES";
+const caseNumber = "[To Be Assigned]";
+const documentTitle = "COMPLAINT FOR: BREACH OF CONTRACT; BREACH OF FIDUCIARY DUTY; FRAUDULENT INDUCEMENT; DEFAMATION; INTENTIONAL INTERFERENCE WITH PROSPECTIVE ECONOMIC ADVANTAGE; UNFAIR COMPETITION; CONSTRUCTIVE TRUST; MISAPPROPRIATION OF TRADE SECRETS; INVASION OF PRIVACY; NEGLIGENT INFLICTION OF EMOTIONAL DISTRESS; INTENTIONAL INFLICTION OF EMOTIONAL DISTRESS; CIVIL CONSPIRACY; VIOLATION OF CALIFORNIA LABOR CODE; RETALIATORY TERMINATION; CONVERSION.";
+
+const titlePageContent = `
+IN THE ${courtName}
+
+${plaintiffName},
+Plaintiff,
+
+v.
+
+${defendantNames},
+Defendants.
+
+Case No.: ${caseNumber}
+
+---
+
+${documentTitle}
+
+DEMAND FOR JURY TRIAL
+`;
+
+fs.writeFile('Title_Page.txt', titlePageContent, (err) => {
+  if (err) throw err;
+  console.log('Title_Page.txt has been saved!');
+});
