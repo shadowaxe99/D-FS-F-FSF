@@ -1,0 +1,36 @@
+// Statement_of_Facts.txt Generation Code
+
+const fs = require('fs');
+const path = require('path');
+
+const plaintiffName = "Michael Gruen";
+const defendantNames = ["CROSSCHECK STUDIOS, LLC", "JOSHUA RICHARDS", "CHRIS SAWTELLE", "JEREMIAH REYNOLDS, ESQ.", "ESTEBAN DIMASI"];
+const factsList = [
+  "Michael Gruen is a 38.7% owner of Crosscheck Studios LLC. However, he has been completely shut out of the company by Joshua Richards, another key figure in the company.",
+  "The company, under the influence of Joshua Richards, has ceased communication with Michael Gruen and terminated his access to company email.",
+  "Michael Gruen is represented by counsel who is seeking to protect his interests in the company and ensure adequate compensation for his ownership stake.",
+  "There is a demand for Joshua Richards, Chris Sawtelle, Crosscheck Sports LLC, Crosscheck Studios LLC, and their associated personnel to preserve all relevant documents, recordings, and electronically stored information (ESI).",
+  "Due to the termination of Mr. Gruen's access to his email and the breakdown in communication, there is a concern that important documents and records may not be retained by Joshua Richards, Chris Sawtelle, or the company."
+];
+
+function generateStatementOfFacts() {
+  let statementOfFactsContent = `### STATEMENT OF FACTS\n\n`;
+  factsList.forEach((fact, index) => {
+    statementOfFactsContent += `**Paragraph ${4 + index}:** ${fact}\n\n`;
+  });
+
+  return statementOfFactsContent;
+}
+
+function saveToFile(filename, content) {
+  fs.writeFile(path.join(__dirname, filename), content, (err) => {
+    if (err) {
+      console.error(`Failed to save ${filename}: ${err}`);
+    } else {
+      console.log(`${filename} was saved successfully.`);
+    }
+  });
+}
+
+const statementOfFactsContent = generateStatementOfFacts();
+saveToFile('Statement_of_Facts.txt', statementOfFactsContent);

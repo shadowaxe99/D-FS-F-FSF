@@ -1,0 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+
+const signatureTemplate = `
+Respectfully submitted,
+
+By: ___________________________
+${signatureName}, ${signatureTitle}
+
+Date: ${new Date().toLocaleDateString("en-US")}
+
+Contact Information:
+${contactInformation}
+`;
+
+const signatureFilePath = path.join(__dirname, 'Signature.txt');
+
+fs.writeFile(signatureFilePath, signatureTemplate.trim(), (err) => {
+  if (err) throw err;
+  console.log('Signature.txt has been saved!');
+});

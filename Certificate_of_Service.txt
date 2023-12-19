@@ -1,0 +1,32 @@
+const fs = require('fs');
+const path = require('path');
+
+const plaintiffName = "Michael Gruen";
+const defendantName = "Crosscheck Studios, LLC; Joshua Richards; Chris Sawtelle; Jeremiah Reynolds, Esq.; and Esteban Di Masi";
+const serviceDate = new Date().toLocaleDateString("en-US");
+const methodOfService = "electronic mail (email)";
+
+const certificateOfServiceContent = `
+CERTIFICATE OF SERVICE
+
+I, ${signatureName}, certify that I am over the age of eighteen years and not a party to the within action; my business address is ${contactInformation.address}.
+
+On ${serviceDate}, I served the foregoing document described as ${documentTitle} on the interested parties in this action by sending it via ${methodOfService} to the following:
+
+${defendantName}
+
+Executed on ${serviceDate}, at ${contactInformation.city}, ${contactInformation.state}.
+
+${signatureName}
+${signatureTitle}
+`;
+
+const certificateOfServiceFilePath = path.join(__dirname, 'Certificate_of_Service.txt');
+
+fs.writeFile(certificateOfServiceFilePath, certificateOfServiceContent.trim(), (err) => {
+  if (err) {
+    console.error('Error writing Certificate of Service:', err);
+  } else {
+    console.log('Certificate of Service generated successfully.');
+  }
+});

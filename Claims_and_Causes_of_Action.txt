@@ -1,0 +1,47 @@
+// Claims_and_Causes_of_Action.txt
+const fs = require('fs');
+
+const plaintiffName = "Michael Gruen";
+const defendantNames = ["CROSSCHECK STUDIOS, LLC", "JOSHUA RICHARDS", "CHRIS SAWTELLE", "JEREMIAH REYNOLDS, ESQ.", "ESTEBAN DIMASI"];
+const claimsList = [
+  "BREACH OF CONTRACT",
+  "BREACH OF FIDUCIARY DUTY",
+  "FRAUDULENT INDUCEMENT",
+  "DEFAMATION",
+  "INTENTIONAL INTERFERENCE WITH PROSPECTIVE ECONOMIC ADVANTAGE",
+  "UNFAIR COMPETITION",
+  "CONSTRUCTIVE TRUST",
+  "MISAPPROPRIATION OF TRADE SECRETS",
+  "INVASION OF PRIVACY",
+  "NEGLIGENT INFLICTION OF EMOTIONAL DISTRESS",
+  "INTENTIONAL INFLICTION OF EMOTIONAL DISTRESS",
+  "CIVIL CONSPIRACY",
+  "VIOLATION OF CALIFORNIA LABOR CODE",
+  "RETALIATORY TERMINATION",
+  "CONVERSION"
+];
+
+function generateClaimsAndCausesContent(plaintiff, defendants, claims) {
+  let content = `### CLAIMS AND CAUSES OF ACTION\n\n`;
+  content += `Plaintiff ${plaintiff}, alleges the following claims and causes of action against Defendants ${defendants.join('; ')}:\n\n`;
+
+  claims.forEach((claim, index) => {
+    content += `**${index + 1}. ${claim}**\n`;
+    content += `Plaintiff re-alleges and incorporates by reference the foregoing paragraphs as if fully set forth herein.\n\n`;
+    content += `Plaintiff further alleges that Defendant${defendants.length > 1 ? 's' : ''} ${claim.toLowerCase()} by ${claimSpecificDetails(claim)}.\n\n`;
+  });
+
+  return content;
+}
+
+function claimSpecificDetails(claim) {
+  // Placeholder function for claim-specific details, to be implemented based on case facts
+  return `details specific to how the defendant's actions constitute the claim of ${claim}`;
+}
+
+const claimsAndCausesContent = generateClaimsAndCausesContent(plaintiffName, defendantNames, claimsList);
+
+fs.writeFile('Claims_and_Causes_of_Action.txt', claimsAndCausesContent, (err) => {
+  if (err) throw err;
+  console.log('Claims and Causes of Action have been saved!');
+});
